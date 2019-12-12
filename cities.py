@@ -1,4 +1,10 @@
 def read_cities(file_name):
+    infile=open(file_name,"r")
+    line=infile.readline()
+    road_map=[]
+    while line!="":
+       line.rstrip()
+       mapplaces=line.split(' ')
     """
     Read in the cities from the given `file_name`, and return 
     them as a list of four-tuples: 
