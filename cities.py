@@ -1,3 +1,5 @@
+import random #number = N * random.random()  will give random num betw 0 and N
+
 def read_cities(file_name):
     infile=open(file_name,"r")
     line=infile.readline()
@@ -5,26 +7,33 @@ def read_cities(file_name):
     while line!="":
        line.rstrip()
        mapplaces=line.split(' ')
+       road_map.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
+       line=infile.readline()
+
     """
     Read in the cities from the given `file_name`, and return 
     them as a list of four-tuples: 
-
       [(state, city, latitude, longitude), ...] 
-
     Use this as your initial `road_map`, that is, the cycle 
-
       Alabama -> Alaska -> Arizona -> ... -> Wyoming -> Alabama.
     """
-    pass
   
 def print_cities(road_map):
+    for x in road_map:
+        print(x[0]+" "+x[1]+" "+str(round(x[2],2))+" "+str(round(x[3],2)))
+
     """
     Prints a list of cities, along with their locations. 
     Print only one or two digits after the decimal point.
     """
-    pass
 
 def compute_total_distance(road_map):
+    dist=0
+    # distance calc sqrt((x1-x2)^2 + (y1-y2)^2)
+    #need to figure out how to get x1 and x2 - maybe call i in range for index
+    #set x1 and y1 equal to i index and x2 and y2 equal to i+1
+    #then do the distance calculation for then and recurse until at end of list
+    #add to dist
     """
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
@@ -34,25 +43,37 @@ def compute_total_distance(road_map):
 
 
 def swap_cities(road_map, index1, index2):
+    new_road_map=road_map.copycopy()
+    if index1==index2:
+        pass
+    else:
+        new_road_map[index1]=road_map[index2]
+        new_road_map[index2]=road_map[index1]
+
+    new_total_distance = compute_total_distance(new_road_map)
     """
     Take the city at location `index` in the `road_map`, and the 
     city at location `index2`, swap their positions in the `road_map`, 
     compute the new total distance, and return the tuple 
-
         (new_road_map, new_total_distance)
-
     Allow for the possibility that `index1=index2`,
     and handle this case correctly.
     """
-    return road_map
+    return (new_road_map,new_total_distance)
 
 def shift_cities(road_map):
+    shiftmap=road_map.copycopy()
+    for i in range(0,length(road_map)):
+        if i=length(road_map):
+            shiftmap[i]=road_map[0]
+        else:
+            shiftmap[i]=road_map[i+1]
     """
     For every index i in the `road_map`, the city at the position i moves
     to the position i+1. The city at the last position moves to the position
     0. Return the new road map. 
     """
-    return road_map
+    return shiftmap
 
 def find_best_cycle(road_map):
     """
