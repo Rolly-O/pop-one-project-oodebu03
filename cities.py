@@ -1,18 +1,19 @@
 import random #number = N * random.random()  will give random num betw 0 and N
+import copy
 
 def read_cities(file_name):
     infile=open(file_name,"r")
     line=infile.readline()
-    road_map=[]
+    roadmap=[]
     while line!="":
        line.rstrip()
        mapplaces=line.split(' ')
-       road_map.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
+       roadmap.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
        line=infile.readline()
     infile.close()
 
-#def _init_(self,road_map):
-    #self._road_map=road_map
+#def _init_(self,roadmap):
+    #self._roadmap=roadmap
 
     """
     Read in the cities from the given `file_name`, and return 
@@ -47,7 +48,7 @@ def compute_total_distance(road_map):
 
 
 def swap_cities(road_map, index1, index2):
-    new_road_map=road_map.copycopy()
+    new_road_map=copy.copy(road_map)
     if index1==index2:
         pass
     else:
@@ -66,7 +67,7 @@ def swap_cities(road_map, index1, index2):
     return (new_road_map,new_total_distance)
 
 def shift_cities(road_map):
-    shiftmap=road_map.copycopy()
+    shiftmap=copy.copy(road_map)
     for i in range(0,length(road_map)):
         if i=length(road_map):
             shiftmap[i]=road_map[0]
@@ -105,9 +106,9 @@ def main():
     #does a combination of read_cities, find_best_cycle then print_map for this
     #once others are done then can just
     read_cities(filename)
-    print_cities(road_map)
-    find_best_cylcle(road_map)
-    print_map(road_map)
+    return print_cities(road_map)
+    return find_best_cycle(road_map)
+    
 
 if __name__ == "__main__": #keep this in
     main()
