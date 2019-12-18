@@ -9,6 +9,10 @@ def read_cities(file_name):
        mapplaces=line.split(' ')
        road_map.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
        line=infile.readline()
+    infile.close()
+
+#def _init_(self,road_map):
+    #self._road_map=road_map
 
     """
     Read in the cities from the given `file_name`, and return 
@@ -97,7 +101,13 @@ def main():
     Reads in, and prints out, the city data, then creates the "best"
     cycle and prints it out.
     """
-    pass
+    filename=input("Please input the file name:")
+    #does a combination of read_cities, find_best_cycle then print_map for this
+    #once others are done then can just
+    read_cities(filename)
+    print_cities(road_map)
+    find_best_cylcle(road_map)
+    print_map(road_map)
 
 if __name__ == "__main__": #keep this in
     main()
