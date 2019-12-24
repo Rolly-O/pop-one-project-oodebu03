@@ -106,6 +106,11 @@ def print_map(road_map):
     #cost for each connectin is distance of each connection and tot cost is tot distance
     pass
 
+def visualise(road_map):
+    """
+    Need to figure out a way to visualise the road_map!!!!!!!!!!!!!!
+    """
+
 def main():
     """
     Reads in, and prints out, the city data, then creates the "best"
@@ -116,8 +121,9 @@ def main():
     #once others are done then can just
     read_cities(filename)
     return print_cities(road_map)
-    return find_best_cycle(road_map)
-    
+    m=find_best_cycle(road_map)
+    return m
+    return visualise(m)
 
 if __name__ == "__main__": #keep this in
     main()
