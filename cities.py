@@ -13,6 +13,7 @@ def read_cities(file_name):
     infile.close()
 
     #amend the roadmap list to have alabama at the end as well as the start
+    #the item after lst[i] is not just lst(i + 1), but is lst[(i + 1) % len(lst)]
     """
     Read in the cities from the given `file_name`, and return 
     them as a list of four-tuples: 
