@@ -95,6 +95,7 @@ def print_map(road_map):
     their connections, along with the cost for each connection 
     and the total cost.
     """
+    #cost for each connectin is distance of each connection and tot cost is tot distance
     pass
 
 def main():
