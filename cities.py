@@ -1,4 +1,4 @@
-import random #number = N * random.random()  will give random num betw 0 and N
+import random
 import copy
 
 def read_cities(file_name):
@@ -7,14 +7,12 @@ def read_cities(file_name):
     roadmap=[]
     while line!="":
        line.rstrip()
-       mapplaces=line.split(' ')
+       mapplaces=line.split()
        roadmap.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
        line=infile.readline()
     infile.close()
 
-#def _init_(self,roadmap):
-    #self._roadmap=roadmap
-
+    #amend the roadmap list to have alabama at the end as well as the start
     """
     Read in the cities from the given `file_name`, and return 
     them as a list of four-tuples: 
@@ -81,6 +79,15 @@ def shift_cities(road_map):
     return shiftmap
 
 def find_best_cycle(road_map):
+    count=0
+    while count<10000:
+        N=2
+        number = N * random.random()  #will give random num betw 0 and N
+        if number==1:
+            swap_cities(road_map)
+        else:
+            shift_cities(road_map)
+        count=count+1
     """
     Using a combination of `swap_cities` and `shift_cities`, 
     try `10000` swaps/shifts, and each time keep the best cycle found so far. 
