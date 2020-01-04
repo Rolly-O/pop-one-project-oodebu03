@@ -10,8 +10,11 @@ def test_compute_total_distance():
            pytest.approx(9.386+18.496+10.646, 0.01)
 
     '''add your further tests'''
-    assert not compute_total_distance(road_map1)==0
-    #want to test that 
+    assert not compute_total_distance(road_map1)==0 #stub
+    assert not compute_total_distance(road_map1)==\
+           pytest.approx(88.098+337.103+113.347, 0.01) #missing sqrt
+    assert not compute_total_distance(road_map1)==\
+           pytest.approx(9.386+18.496, 0.01) #not circular list so missing the last sum
 
 def test_swap_cities():
     '''add your tests'''
@@ -24,7 +27,6 @@ def test_swap_cities():
     assert not test_swap_cities(road_map1,1,2)==road_map1
     assert test_swap_cities(roadmap1,1,2)==road_map2
     assert test_swap_cities(roadmap1,1,1)==road_map1
-    # assert not test_swap_cities('has some random string here')
     #want to test the indices provided are not out of scope
     
 
