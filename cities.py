@@ -39,13 +39,10 @@ def compute_total_distance(road_map):
     loc=[]
     for x in road_map:
         loc.append((x[2],x[3]))
+    loc.append(road_map[0][2],road_map[0][3])
     for i in (0,len(loc)-1):
         dist=dist+(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
     # distance calc sqrt((x1-x2)^2 + (y1-y2)^2)
-    #need to figure out how to get x1 and x2 - maybe call i in range for index
-    #set x1 and y1 equal to i index and x2 and y2 equal to i+1
-    #then do the distance calculation for then and recurse until at end of list
-    #add to dist
     """
     Returns, as a floating point number, the sum of the distances of all 
     the connections in the `road_map`. Remember that it's a cycle, so that 
@@ -55,7 +52,7 @@ def compute_total_distance(road_map):
 
 
 def swap_cities(road_map, index1, index2):
-    new_road_map=copy.copy(road_map)
+    new_road_map=copy.deepcopy(road_map)
     if index1==index2:
         pass
     else:
@@ -74,12 +71,12 @@ def swap_cities(road_map, index1, index2):
     return (new_road_map,new_total_distance)
 
 def shift_cities(road_map):
-    shiftmap=copy.copy(road_map)
-    for i in range(0,length(road_map)):
-        if i=length(road_map):
-            shiftmap[i]=road_map[0]
+    shiftmap=copy.deepcopy(road_map)
+    for i in range(0,len(road_map)):
+        if i=0:
+            shiftmap[i]=road_map[len(road_map)]
         else:
-            shiftmap[i]=road_map[i+1]
+            shiftmap[i]=road_map[i-1]
     """
     For every index i in the `road_map`, the city at the position i moves
     to the position i+1. The city at the last position moves to the position
@@ -89,21 +86,29 @@ def shift_cities(road_map):
 
 def find_best_cycle(road_map):
     count=0
+    bestmap=[]
+    newmap=[]
+    m=0
+    best=0
     while count<10000:
         N=2
         number = N * random.random()  #will give random num betw 0 and N
         if number==1:
-            swap_cities(road_map)
+            newmap=swap_cities(road_map,rand(),rand())
         else:
-            shift_cities(road_map)
+            newmap=shift_cities(road_map)
         count=count+1
+        m=compute_total_distance(newmap)
+        if m<=best:
+            best=m
+            bestmap=newmap
     """
     Using a combination of `swap_cities` and `shift_cities`, 
     try `10000` swaps/shifts, and each time keep the best cycle found so far. 
     After `10000` swaps/shifts, return the best cycle found so far.
     Use randomly generated indices for swapping.
     """
-    pass
+    return bestmap
 
 def print_map(road_map):
     """
