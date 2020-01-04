@@ -130,6 +130,24 @@ def visualise(road_map):
     """
     Need to figure out a way to visualise the road_map!!!!!!!!!!!!!!
     """
+    coord=[]
+    for x in road_map:
+        coord.append((x[2],x[3]))
+    maxx=-180
+    minx=180
+    maxy=-180
+    miny=180
+    for x in road_map:
+        if x[2]>maxx:
+            maxx=int(x[2])
+        if x[2]<minx:
+            minx=int(x[2])
+        if x[3]>maxy:
+            maxy=int(x[3])
+        if x[3]<miny:
+            miny=int(x[3])
+    #boundaries for the grid are minx, maxx, miny and maxy
+    
 
 def main():
     """
