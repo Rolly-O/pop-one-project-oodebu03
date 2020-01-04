@@ -89,12 +89,11 @@ def find_best_cycle(road_map):
     bestmap=[]
     newmap=[]
     m=0
-    best=0
-    while count<10000:
-        N=2
-        number = N * random.random()  #will give random num betw 0 and N
+    best=1000
+    while count<10000
+        number = random.randint(1,2)
         if number==1:
-            newmap=swap_cities(road_map,rand(),rand())
+            newmap=swap_cities(road_map,random.randint(0,len(road_map)),random.randint(0,len(road_map)))
         else:
             newmap=shift_cities(road_map)
         count=count+1
@@ -110,14 +109,22 @@ def find_best_cycle(road_map):
     """
     return bestmap
 
+
 def print_map(road_map):
+    for x in road_map:
+        loc.append((x[2],x[3]))
+    loc.append(road_map[0][2],road_map[0][3])
+    for i in (0,len(loc)-1):
+            dist=(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
+            print('Distance of '+road_map[i][0]+', '+road_map[i][1]+' -> '+road_map[i+1][0]+', '+road_map[i+1][1]+': '+str(float(dist)))
+    print('Total Distance for Road_Map: '+str(compute_total_distance(road_map)))
+
     """
     Prints, in an easily understandable format, the cities and 
     their connections, along with the cost for each connection 
     and the total cost.
-    """
-    #cost for each connectin is distance of each connection and tot cost is tot distance
-    pass
+    """ #cost for each connection is distance of each connection and tot cost is tot distance
+
 
 def visualise(road_map):
     """
@@ -129,9 +136,8 @@ def main():
     Reads in, and prints out, the city data, then creates the "best"
     cycle and prints it out.
     """
-    filename=input("Please input the file name:")
-    #does a combination of read_cities, find_best_cycle then print_map for this
-    #once others are done then can just
+    filename=input("Please input the file name: ")
+
     read_cities(filename)
     return print_cities(road_map)
     m=find_best_cycle(road_map)
