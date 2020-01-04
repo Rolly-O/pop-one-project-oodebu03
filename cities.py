@@ -4,16 +4,19 @@ import copy
 def read_cities(file_name):
     infile=open(file_name,"r")
     line=infile.readline()
-    roadmap=[]
+    roadlist=[]
     while line!="":
        line.rstrip()
        mapplaces=line.split()
-       roadmap.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[4])))
+       roadlist.append((mapplaces[0],mapplaces[1],int(mapplaces[2]),int(mapplaces[3])))
        line=infile.readline()
     infile.close()
 
-    #amend the roadmap list to have alabama at the end as well as the start
-    #the item after lst[i] is not just lst(i + 1), but is lst[(i + 1) % len(lst)]
+    road_map=[]
+    while i<=len(roadlist):
+        road_map[i]=roadlist[i]
+    road_map[len(roadlist)+1]=roadlist[0]
+    
     """
     Read in the cities from the given `file_name`, and return 
     them as a list of four-tuples: 
@@ -33,6 +36,11 @@ def print_cities(road_map):
 
 def compute_total_distance(road_map):
     dist=0
+    loc=[]
+    for x in road_map:
+        loc.append((x[2],x[3]))
+    for i in (0,len(loc)-1):
+        dist=dist+(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
     # distance calc sqrt((x1-x2)^2 + (y1-y2)^2)
     #need to figure out how to get x1 and x2 - maybe call i in range for index
     #set x1 and y1 equal to i index and x2 and y2 equal to i+1
@@ -43,7 +51,7 @@ def compute_total_distance(road_map):
     the connections in the `road_map`. Remember that it's a cycle, so that 
     (for example) in the initial `road_map`, Wyoming connects to Alabama...
     """
-    return 0
+    return float(dist)
 
 
 def swap_cities(road_map, index1, index2):
