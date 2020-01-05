@@ -40,7 +40,7 @@ def compute_total_distance(road_map):
     for x in road_map:
         loc.append((x[2],x[3]))
     loc.append(road_map[0][2],road_map[0][3])
-    for i in (0,len(loc)-1):
+    for i in range(0,len(loc)):
         dist=dist+(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
     # distance calc sqrt((x1-x2)^2 + (y1-y2)^2)
     """
@@ -72,7 +72,7 @@ def swap_cities(road_map, index1, index2):
 
 def shift_cities(road_map):
     shiftmap=copy.deepcopy(road_map)
-    for i in range(0,len(road_map)):
+    for i in range(0,len(road_map)+1):
         if i=0:
             shiftmap[i]=road_map[len(road_map)]
         else:
@@ -89,8 +89,8 @@ def find_best_cycle(road_map):
     bestmap=[]
     newmap=[]
     m=0
-    best=1000
-    while count<10000
+    best=10000
+    while count<10000:
         number = random.randint(1,2)
         if number==1:
             newmap=swap_cities(road_map,random.randint(0,len(road_map)),random.randint(0,len(road_map)))
@@ -114,7 +114,7 @@ def print_map(road_map):
     for x in road_map:
         loc.append((x[2],x[3]))
     loc.append(road_map[0][2],road_map[0][3])
-    for i in (0,len(loc)-1):
+    for i in range(0,len(loc)):
             dist=(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
             print('Distance of '+road_map[i][0]+', '+road_map[i][1]+' -> '+road_map[i+1][0]+', '+road_map[i+1][1]+': '+str(float(dist)))
     print('Total Distance for Road_Map: '+str(compute_total_distance(road_map)))
@@ -147,7 +147,34 @@ def visualise(road_map):
         if x[3]<miny:
             miny=int(x[3])
     #boundaries for the grid are minx, maxx, miny and maxy
-    
+    yrange=[]
+    xrange=[]
+    for yr in range(miny,maxy+1,1):
+        yrange.append(yr)
+    for xr in range(minx,maxx+1,1):
+        xrange.append(xr)
+
+    print(' ',end='')
+    for i in yrange:
+        print(i,end='')
+    print(*len(yrange)*("|",),sep=' ')
+    #for each coord need to check if x and y in tuple match
+    coindex=0
+    didprint=False
+    for xline in xrange:
+        print(xline,end='')
+        for wy in yrange:
+            for co in coord:
+                if co[0]=int(xline) and co[1]=int(wy):
+                    print('-'+str(coindex+1),end='')
+                    didprint=True
+                coindex=coindex+1
+            if didprint=False:
+                print('-'+' ',end='')
+            didprint=False
+            coindex=0
+        print(*len(yrange)*("|",),sep=' ')
+        
 
 def main():
     """
@@ -155,10 +182,11 @@ def main():
     cycle and prints it out.
     """
     filename=input("Please input the file name: ")
-
     read_cities(filename)
+    print("Initial Map: ")
     return print_cities(road_map)
     m=find_best_cycle(road_map)
+    print("Best Cycle: ")
     return m
     return visualise(m)
 
