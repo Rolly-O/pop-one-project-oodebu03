@@ -1,5 +1,6 @@
 import random
 import copy
+import math
 
 def read_cities(file_name):
     infile=open(file_name,"r")
@@ -115,7 +116,7 @@ def print_map(road_map):
         loc.append((x[2],x[3]))
     loc.append(road_map[0][2],road_map[0][3])
     for i in range(0,len(loc)):
-            dist=(sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
+            dist=sqrt((loc[i][0]-loc[i+1][0])**2 + (loc[i][1]-loc[i+1][1])**2))
             print('Distance of '+road_map[i][0]+', '+road_map[i][1]+' -> '+road_map[i+1][0]+', '+road_map[i+1][1]+': '+str(float(dist)))
     print('Total Distance for Road_Map: '+str(compute_total_distance(road_map)))
 
@@ -128,7 +129,7 @@ def print_map(road_map):
 
 def visualise(road_map):
     """
-    Need to figure out a way to visualise the road_map!!!!!!!!!!!!!!
+    Create visualisation for the map
     """
     coord=[]
     for x in road_map:
