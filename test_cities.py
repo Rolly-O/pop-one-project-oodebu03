@@ -27,7 +27,7 @@ def test_swap_cities():
     assert not test_swap_cities(road_map1,1,2)==road_map1
     assert test_swap_cities(roadmap1,1,2)==road_map2
     assert test_swap_cities(roadmap1,1,1)==road_map1
-    #want to test the indices provided are not out of scope
+    
     
 
 def test_shift_cities():
@@ -40,7 +40,7 @@ def test_shift_cities():
                 ("Delaware", "Dover", 39.161921, -75.526755)]
     assert not test_shift_cities(road_map1)==road_map1
     assert test_shift_cities(road_map1)==road_map2
-    #want to test there is no error in the running of the func
+    
     
 
 
